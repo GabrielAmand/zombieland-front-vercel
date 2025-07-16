@@ -4,38 +4,38 @@ import CarouselReviews from "@/components/attractionReview/CarouselReviews";
 import { getApiUrl } from "@/utils/getApi";
 import { Suspense } from "react";
 
+type Props = {
+  params: {
+    slug: string;
+  };
+};
 
-export default async function AttractionPage({
-	params,
-}: {
-	params: { slug: string };
-}) {
-	params: Promise<{ slug: string }>;
+export default async function AttractionPage({ params }: Props) {
+  const { slug } = params;
 
-	/* fetch one attraction */
+  try {
+    const httpResponse = await fetch(`${getApiUrl()}/attractions/slug/${slug}`);
 
-	try {
-		const httpResponse = await fetch(`${getApiUrl()}/attractions/slug/${slug}`);
+    if (httpResponse.status === 404) {
+      notFound();
+    }
 
-		if (httpResponse.status === 404) {
-			notFound(); // 404 automatic
-		}
-		if (!httpResponse.ok) {
-			// (500, 403, etc.)
-			throw new Error(`Erreur serveur: ${httpResponse.status}`);
-		}
+    if (!httpResponse.ok) {
+      throw new Error(`Erreur serveur: ${httpResponse.status}`);
+    }
 
-		const data = await httpResponse.json();
+    const data = await httpResponse.json();
 
-		return (
-			<>
-				<AttractionDetails attraction={data.oneAttraction} />
-				<Suspense fallback={<p className="text-center mt-6">Chargement des avis...</p>}>
-				<CarouselReviews attractionId={data.oneAttraction.id} />
-				</Suspense>
-			</>
-		);
-	} catch (error) {
-		console.log(error);
-	}
+    return (
+      <>
+        <AttractionDetails attraction={data.oneAttraction} />
+        <Suspense fallback={<p className="text-center mt-6">Chargement des avis...</p>}>
+          <CarouselReviews attractionId={data.oneAttraction.id} />
+        </Suspense>
+      </>
+    );
+  } catch (error) {
+    console.error(error);
+    notFound();
+  }
 }
