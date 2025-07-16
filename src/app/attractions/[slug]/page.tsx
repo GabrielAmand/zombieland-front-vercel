@@ -10,7 +10,7 @@ export default async function AttractionPage({
 }: {
 	params: { slug: string };
 }) {
-	const { slug } = await params;
+	params: Promise<{ slug: string }>;
 
 	/* fetch one attraction */
 
