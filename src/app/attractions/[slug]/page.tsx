@@ -4,13 +4,11 @@ import CarouselReviews from "@/components/attractionReview/CarouselReviews";
 import { getApiUrl } from "@/utils/getApi";
 import { Suspense } from "react";
 
-type Props = {
-  params: {
-    slug: string;
-  };
-};
-
-export default async function AttractionPage({ params }: Props) {
+export default async function AttractionPage({
+  params,
+}: {
+  params: { slug: string };
+}) {
   const { slug } = params;
 
   try {
