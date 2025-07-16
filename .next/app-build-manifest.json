@@ -92,19 +92,19 @@
       "static/chunks/874-437a265a67d6cfee.js",
       "static/chunks/app/inscription/page-7d6eb2b6f4c0bf09.js"
     ],
-    "/mentions-legales/page": [
-      "static/chunks/webpack-98c4e2f3836073c5.js",
-      "static/chunks/4bd1b696-cf72ae8a39fa05aa.js",
-      "static/chunks/964-eda38e26c0391a47.js",
-      "static/chunks/main-app-ef90df92755110c0.js",
-      "static/chunks/app/mentions-legales/page-0c065e30e86a2b7a.js"
-    ],
     "/mes-reservations/page": [
       "static/chunks/webpack-98c4e2f3836073c5.js",
       "static/chunks/4bd1b696-cf72ae8a39fa05aa.js",
       "static/chunks/964-eda38e26c0391a47.js",
       "static/chunks/main-app-ef90df92755110c0.js",
       "static/chunks/app/mes-reservations/page-84c37d4a5951276b.js"
+    ],
+    "/mentions-legales/page": [
+      "static/chunks/webpack-98c4e2f3836073c5.js",
+      "static/chunks/4bd1b696-cf72ae8a39fa05aa.js",
+      "static/chunks/964-eda38e26c0391a47.js",
+      "static/chunks/main-app-ef90df92755110c0.js",
+      "static/chunks/app/mentions-legales/page-0c065e30e86a2b7a.js"
     ],
     "/mon-profil/page": [
       "static/chunks/webpack-98c4e2f3836073c5.js",
