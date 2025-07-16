@@ -1,4 +1,5 @@
 import MyProfil from "@/components/mon-profil/MyProfile";
+import { Suspense } from "react";
 
 export const metadata = {
     title: "Mon profil – Zombieland",
@@ -12,7 +13,9 @@ export default function MonProfilPage() {
             <h1 className="text-primary font-subtitle text-3xl text-center mt-4">
                 Mon profil
             </h1>
-            <MyProfil />
+            <Suspense  fallback={<p className="text-center mt-6">Chargement...</p>}>
+                <MyProfil />
+            </Suspense>
         </main>
     );
 }

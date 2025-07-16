@@ -1,4 +1,5 @@
 import ContactForm from "@/components/contact/ContactForm";
+import { Suspense } from "react";
 
 export const metadata = {
 	title: "Zombieland Contact",
@@ -12,7 +13,9 @@ export default function ContactPage() {
 				<h1 className="text-4xl font-title text-primary mb-8 uppercase tracking-wide">
 					Contactez-nous
 				</h1>
-				<ContactForm />
+				<Suspense fallback={<p className="text-center mt-6">Chargement...</p>}>
+					<ContactForm />
+				</Suspense>
 			</div>
 		</main>
 	);

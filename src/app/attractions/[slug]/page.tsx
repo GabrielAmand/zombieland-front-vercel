@@ -2,11 +2,13 @@ import { notFound } from "next/navigation";
 import AttractionDetails from "@/components/attraction/AttractionDetails";
 import CarouselReviews from "@/components/attractionReview/CarouselReviews";
 import { getApiUrl } from "@/utils/getApi";
+import { Suspense } from "react";
+
 
 export default async function AttractionPage({
 	params,
 }: {
-	params: Promise<{ slug: string }>;
+	params: { slug: string };
 }) {
 	const { slug } = await params;
 
@@ -28,7 +30,9 @@ export default async function AttractionPage({
 		return (
 			<>
 				<AttractionDetails attraction={data.oneAttraction} />
+				<Suspense fallback={<p className="text-center mt-6">Chargement des avis...</p>}>
 				<CarouselReviews attractionId={data.oneAttraction.id} />
+				</Suspense>
 			</>
 		);
 	} catch (error) {

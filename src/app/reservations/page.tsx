@@ -1,4 +1,6 @@
 import ReservationForm from "@/components/reservations/ReservationForm";
+import { Suspense } from "react";
+
 
 export const metadata = {
 	title: "Réservations – Zombieland",
@@ -11,7 +13,9 @@ export default function ReservationsPage() {
 			<h2 className="text-center text-3xl sm:text-5xl font-subtitle uppercase text-primary mb-8">
 				Réserver votre visite
 			</h2>
-			<ReservationForm />
+			<Suspense  fallback={<p className="text-center mt-6">Chargement...</p>}>
+				<ReservationForm />
+			</Suspense>
 		</div>
 	);
 }

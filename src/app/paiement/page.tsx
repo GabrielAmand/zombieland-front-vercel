@@ -1,4 +1,5 @@
 import PaiementSection from "@/components/paiement/PaiementSection";
+import { Suspense } from "react";
 
 
 export const metadata = {
@@ -9,7 +10,9 @@ export const metadata = {
 export default function PaiementPage() {
   return (
     <div className="min-h-screen flex flex-col items-center justify-start px-4 py-12 bg-background text-text">
-      <PaiementSection />
+      <Suspense  fallback={<p className="text-center mt-6">Chargement...</p>}>
+        <PaiementSection />
+      </Suspense>
     </div>
   );
 }
