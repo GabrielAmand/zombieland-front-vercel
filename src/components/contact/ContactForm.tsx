@@ -1,10 +1,9 @@
 "use client";
-import emailjs from "@emailjs/browser";
-import { type FormEvent, useState } from "react";
-import { useTokenContext } from "@/context/TokenProvider";
+import emailjs from '@emailjs/browser';
+import { useState, FormEvent } from "react";
+
 
 export default function ContactForm() {
-	const { token } = useTokenContext();
 	const [firstname, setFirstName] = useState("");
 	const [lastname, setLastName] = useState("");
 	const [email, setEmail] = useState("");
@@ -12,54 +11,52 @@ export default function ContactForm() {
 	const [error, setError] = useState("");
 	const [success, setSuccess] = useState("");
 
-	const handleSubmit = async (e: FormEvent) => {
-		e.preventDefault();
-		setError("");
-		setSuccess("");
+const handleSubmit = async (e: FormEvent) => {
+	e.preventDefault();
+  setError("");
+  setSuccess("");
 
-		// Prepare data object to send to EmailJS, keys must match template variables
+	// Prepare data object to send to EmailJS, keys must match template variables
 		const formData = {
-			firstname: firstname,
-			lastname: lastname,
-			email: email,
-			message: message,
-			reply_to: email,
-		};
-
-		try {
-			// Send email using EmailJS service, template, and public key from env variables
-			await emailjs.send(
-				process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
-				process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
-				formData,
-				process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!,
-			);
-
-			// Set success message if email was sent
-			setSuccess("Message envoyé avec succès !");
-
-			// Clear form fields after sending
-			setFirstName("");
-			setLastName("");
-			setEmail("");
-			setMessage("");
-		} catch (error) {
-			console.error(error);
-			setError("Erreur lors de l’envoi du message.");
-		}
+		firstname: firstname,
+		lastname: lastname,
+		email: email,
+		message: message,
+		reply_to: email,
 	};
+
+  try {
+		// Send email using EmailJS service, template, and public key from env variables
+		await emailjs.send(
+			process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
+			process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
+			formData,
+			process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!
+		);
+
+		// Set success message if email was sent
+		setSuccess('Message envoyé avec succès !'); 
+
+		// Clear form fields after sending
+		setFirstName('');
+		setLastName('');
+		setEmail('');
+		setMessage('');
+  } catch (error) {
+    console.error(error);
+    setError('Erreur lors de l’envoi du message.');
+  }
+};
 
 	return (
 		<form
 			onSubmit={handleSubmit}
 			className="flex flex-col gap-4 w-full max-w-xl mx-auto bg-surface bg-opacity-90 backdrop-blur-sm p-6 rounded-lg border border-primary shadow-lg"
 		>
+
 			{/* Champ prénom */}
 			<div className="flex flex-col">
-				<label
-					htmlFor="firstname"
-					className="text-primary-light font-subtitle uppercase text-xl"
-				>
+				<label htmlFor="firstname" className="text-primary-light font-subtitle uppercase text-xl">
 					Prénom
 				</label>
 				<input
@@ -75,10 +72,7 @@ export default function ContactForm() {
 
 			{/* Champ nom */}
 			<div className="flex flex-col">
-				<label
-					htmlFor="lastname"
-					className="text-primary-light font-subtitle uppercase text-xl"
-				>
+				<label htmlFor="lastname" className="text-primary-light font-subtitle uppercase text-xl">
 					Nom
 				</label>
 				<input
@@ -94,10 +88,7 @@ export default function ContactForm() {
 
 			{/* Champ email */}
 			<div className="flex flex-col">
-				<label
-					htmlFor="email"
-					className="text-primary-light font-subtitle uppercase text-xl"
-				>
+				<label htmlFor="email" className="text-primary-light font-subtitle uppercase text-xl">
 					Email
 				</label>
 				<input
@@ -113,10 +104,7 @@ export default function ContactForm() {
 
 			{/* Champ message */}
 			<div className="flex flex-col">
-				<label
-					htmlFor="message"
-					className="text-primary-light font-subtitle uppercase text-xl"
-				>
+				<label htmlFor="message" className="text-primary-light font-subtitle uppercase text-xl">
 					Message
 				</label>
 				<textarea
