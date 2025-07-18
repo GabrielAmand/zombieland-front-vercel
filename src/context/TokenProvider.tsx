@@ -81,7 +81,7 @@ export const TokenProvider = ({ children }: { children: React.ReactNode }) => {
 			Cookies.set("zombieland_token", newToken, {
 				expires: 1,
 				secure: process.env.NODE_ENV === "production",
-				sameSite: "strict",
+				sameSite: "none",
 			});
 			setTokenState(newToken);
 		} else {
