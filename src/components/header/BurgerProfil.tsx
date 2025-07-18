@@ -76,7 +76,7 @@ export default function BurgerProfil({
 								<Link
 
 									href="/mon-profil"
-									onClick={() => setOpen(false)}
+									onClick={handleOpen}
 
 									className="flex items-center gap-3 py-2 text-primary-light transition-colors hover:text-primary"
 								>
