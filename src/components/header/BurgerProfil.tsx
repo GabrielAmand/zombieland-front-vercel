@@ -30,12 +30,14 @@ export default function BurgerProfil({
 	const handleLogout = () => {
 		// Remove the token from the cookies
 		Cookies.remove("zombieland_token");
-
+		// Remove localstorage with logout
+		localStorage.removeItem("zombieland_reservation");
 		// Clear the token from the context
 		setToken(null);
 
 		// Close the burger menu
 		setOpen(false);
+		handleOpen();
 
 		// Redirect the user to the home page after logout
 		router.push("/");
@@ -72,8 +74,10 @@ export default function BurgerProfil({
 						<ul className="mt-8 flex flex-grow flex-col gap-6">
 							<li>
 								<Link
-									href="/profil"
-									onClick={handleOpen}
+
+									href="/mon-profil"
+									onClick={() => setOpen(false)}
+
 									className="flex items-center gap-3 py-2 text-primary-light transition-colors hover:text-primary"
 								>
 									Mon profil

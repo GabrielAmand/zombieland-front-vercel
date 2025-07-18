@@ -10,13 +10,13 @@ export const metadata = {
 
 export default function MesReservationsPage() {
 	return (
-		<main className="max-w-md mx-auto p-4">
+		<div className="max-w-md mx-auto p-4 px-4 py-6 ">
 			<h1 className="text-primary font-subtitle text-3xl text-center mt-4">
 				Mes Réservations
 			</h1>
 			<Suspense  fallback={<p className="text-center mt-6">Chargement...</p>}>
 				<ReservationList />
 			</Suspense>
-		</main>
+		</div>
 	);
 }
