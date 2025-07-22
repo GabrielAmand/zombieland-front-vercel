@@ -1,3 +1,3 @@
 export function getApiUrl(): string {
-	return "/api/proxy"; // Always use proxy
+	return "/api/proxy/api"; // Always use proxy
   }

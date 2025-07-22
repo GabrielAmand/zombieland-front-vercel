@@ -43,7 +43,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 		setLoading(true);
 
 		try {
-			const res = await fetch(`${getApiUrl()}/api/auth/verify`,
+			const res = await fetch(`${getApiUrl()}/auth/verify`,
 				{
 					credentials: "include",
 				},
