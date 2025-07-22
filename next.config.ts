@@ -6,7 +6,7 @@ const nextConfig: NextConfig = {
     return [
       {
         source: "/api/:path*", // tout ce qui commence par /api/proxy/...
-        destination: "https://projet-zombieland-sco4.onrender.com/:path*", // sera redirigé vers Render
+        destination: "https://projet-zombieland-sco4.onrender.com/api/:path*", // sera redirigé vers Render
       },
     ];
   },
