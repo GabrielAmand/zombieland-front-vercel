@@ -1,6 +1,8 @@
 // Fichier : AuthContext.tsx
 
+import { getApiUrl } from "@/utils/getApi";
 import type React from "react";
+
 import {
 	createContext,
 	useCallback,
@@ -41,8 +43,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 		setLoading(true);
 
 		try {
-			const res = await fetch(
-				`${process.env.NEXT_PUBLIC_API_URL}/auth/verify`,
+			const res = await fetch(`${getApiUrl()}/api/auth/verify`,
 				{
 					credentials: "include",
 				},
@@ -71,7 +72,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 	}, [refreshUser]);
 	// Logs the user out by hitting the backend and refreshing the state
 	const logout = useCallback(async () => {
-		await fetch(`${process.env.NEXT_PUBLIC_API_URL}/login/logout`, {
+		await fetch(`${getApiUrl()}/login/logout`, {
 			method: "POST",
 			credentials: "include", // Needed to clear the session cookie
 		});

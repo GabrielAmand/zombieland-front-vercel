@@ -1,8 +1,15 @@
-// next.config.js ou next.config.ts
+// next.config.ts
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-	// (Tu peux ajouter d'autres options ici si besoin)
+  async rewrites() {
+    return [
+      {
+        source: "/api/proxy/:path*", // tout ce qui commence par /api/proxy/...
+        destination: "https://zombieland-api.onrender.com/:path*", // sera redirigé vers Render
+      },
+    ];
+  },
 };
 
 export default nextConfig;
