@@ -5,8 +5,8 @@ const nextConfig: NextConfig = {
   async rewrites() {
     return [
       {
-        source: "/api/proxy/:path*", // tout ce qui commence par /api/proxy/...
-        destination: "https://zombieland-api.onrender.com/:path*", // sera redirigé vers Render
+        source: "/api/:path*", // tout ce qui commence par /api/proxy/...
+        destination: "https://projet-zombieland-sco4.onrender.com/:path*", // sera redirigé vers Render
       },
     ];
   },

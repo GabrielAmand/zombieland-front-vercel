@@ -1,3 +1,7 @@
+
 export function getApiUrl(): string {
-	return "/api/proxy/api"; // Always use proxy
-  }
+    if (!process.env.NEXT_PUBLIC_API_URL) {
+        throw new Error("NEXT_PUBLIC_API_URL n'est pas définie.");
+    }
+    return process.env.NEXT_PUBLIC_API_URL;
+}
