@@ -9,7 +9,7 @@ export default function DebugPage() {
   const testApiMe = async () => {
     setLoading(true);
     try {
-      const res = await fetch('https://zombieland-api.onrender.com/api/me', {
+        const res = await fetch('https://zombieland-api.onrender.com/api/auth/verify', {
         method: 'GET',
         credentials: 'include',
       });
