@@ -4,7 +4,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { X } from "lucide-react";
 
-
 interface PlanZoomModalProps {
   isOpen: boolean;
   onClose: () => void;
@@ -22,7 +21,7 @@ const attractions = [
   { name: 'Clinique du Chaos', slug: 'clinique-du-chaos', top: '64.5%', left: '40.0%' },
   { name: 'Les Ombres du Cimetière', slug: 'les-ombres-du-cimetière', top: '82.4%', left: '55.0%' },
   { name: 'Les Bois Maudits', slug: 'les-bois-maudits', top: '28.2%', left: '71.1%' },
-  { name: 'Route Z', slug: 'route-z', top: '53.1%', left: '53.4%'},
+  { name: 'Route Z', slug: 'route-z', top: '53.1%', left: '53.4%' },
   { name: 'Tunnel Sans Retour', slug: 'tunnel-sans-retour', top: '39.5%', left: '72.4%' },
 ];
 
@@ -35,14 +34,10 @@ export default function PlanZoomModal({ isOpen, onClose }: PlanZoomModalProps) {
       onClick={onClose}
     >
       <div
-  className="relative w-[90vw] max-w-[1400px] mx-auto"
-  style={{
-    aspectRatio: 'auto',
-    maxHeight: '100vh',
-  }}
-  onClick={(e) => e.stopPropagation()}
->
-        {/* Bouton de fermeture fixé dans l'image */}
+        className="relative w-[1800px] max-w-none aspect-[16/9] overflow-auto"
+        onClick={(e) => e.stopPropagation()}
+      >
+        {/* Bouton de fermeture positionné dans l'image */}
         <button
           className="absolute top-2 right-2 z-50 text-white hover:text-red-500 transition"
           onClick={onClose}
@@ -54,7 +49,7 @@ export default function PlanZoomModal({ isOpen, onClose }: PlanZoomModalProps) {
           src="/images/zombieland-map-isometric.webp"
           alt="Plan du parc Zombieland"
           fill
-          className="object-cover"
+          className="object-contain"
           priority
         />
 
