@@ -6,10 +6,14 @@ import { useEffect, useState } from "react";
 import { useAuthContext } from "@/context/AuthContext";
 import { getApiUrl } from "@/utils/getApi";
 
-// Initialize Stripe (no top-level verification)
-const stripePromise = loadStripe(
-	process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY ?? ""
-);
+// Initialize Stripe with the public key from the environment
+const stripeKey = process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY;
+if (!stripeKey) {
+	throw new Error("Missing Stripe public key");
+}
+
+// Load Stripe later when needed
+const stripePromise = loadStripe(stripeKey);
 
 
 export default function PaiementSection() {
@@ -44,11 +48,6 @@ export default function PaiementSection() {
 	// Create Stripe Checkout session and redirect to Stripe
 	const handlePayment = async () => {
 		if (!reservation || !user) return;
-		if (!process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY) {
-			setError("La clé Stripe est manquante. Contactez l'administrateur.");
-			setPaymentLoading(false);
-			return;
-		}
 
 		setPaymentLoading(true);
 		setError(null);
