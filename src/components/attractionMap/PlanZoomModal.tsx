@@ -30,15 +30,17 @@ export default function PlanZoomModal({ isOpen, onClose }: PlanZoomModalProps) {
 
   return (
     <div
-      className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center overflow-auto"
+      className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center overflow-auto p-4"
       onClick={onClose}
     >
       <div
-        className="relative"
-        style={{ width: "90vw", maxWidth: 1200, aspectRatio: "16/9" }}
+        className="relative inline-block"
+        style={{
+          minWidth: 600,
+        }}
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Close button */}
+        {/* Bouton de fermeture */}
         <button
           className="absolute top-2 right-2 z-50 text-white hover:text-red-500 transition"
           onClick={onClose}
@@ -46,31 +48,33 @@ export default function PlanZoomModal({ isOpen, onClose }: PlanZoomModalProps) {
           <X size={28} />
         </button>
   
-        {/* Background image */}
-        <img
-          src="/images/zombieland-map-isometric.webp"
-          alt="Plan du parc Zombieland"
-          className="w-full h-full object-contain"
-        />
+        {/* Image + liens */}
+        <div className="relative" style={{ width: 1200, height: 675 }}>
+          <Image
+            src="/images/zombieland-map-isometric.webp"
+            alt="Plan du parc Zombieland"
+            fill
+            className="object-contain"
+            priority
+          />
   
-        {/* Liens positionnés proportionnellement */}
-        {attractions.map((attr) => (
-          <Link
-            key={attr.slug}
-            href={`/attractions/${attr.slug}`}
-            className="absolute z-10 text-[10px] sm:text-sm font-subtitle font-semibold text-primary-light whitespace-nowrap transition hover:underline"
-            style={{
-              top: attr.top,
-              left: attr.left,
-              transform: "translate(-50%, -50%)",
-            }}
-            onClick={onClose}
-          >
-            {attr.name}
-          </Link>
-        ))}
+          {attractions.map((attr) => (
+            <Link
+              key={attr.slug}
+              href={`/attractions/${attr.slug}`}
+              className="absolute z-10 text-[10px] sm:text-sm font-subtitle font-semibold text-primary-light whitespace-nowrap transition hover:underline"
+              style={{
+                top: attr.top,
+                left: attr.left,
+                transform: "translate(-50%, -50%)",
+              }}
+              onClick={onClose}
+            >
+              {attr.name}
+            </Link>
+          ))}
+        </div>
       </div>
     </div>
   );
-  
 }
