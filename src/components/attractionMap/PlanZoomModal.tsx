@@ -35,9 +35,13 @@ export default function PlanZoomModal({ isOpen, onClose }: PlanZoomModalProps) {
       onClick={onClose}
     >
       <div
-        className="relative w-[90vw] max-w-[1400px] aspect-[16/9] mx-auto overflow-auto"
-        onClick={(e) => e.stopPropagation()}
-      >
+  className="relative w-[90vw] max-w-[1400px] mx-auto"
+  style={{
+    aspectRatio: '16 / 9',
+    maxHeight: '90vh',
+  }}
+  onClick={(e) => e.stopPropagation()}
+>
         {/* Bouton de fermeture fixé dans l'image */}
         <button
           className="absolute top-2 right-2 z-50 text-white hover:text-red-500 transition"
@@ -50,7 +54,7 @@ export default function PlanZoomModal({ isOpen, onClose }: PlanZoomModalProps) {
           src="/images/zombieland-map-isometric.webp"
           alt="Plan du parc Zombieland"
           fill
-          className="object-contain"
+          className="object-cover"
           priority
         />
 
