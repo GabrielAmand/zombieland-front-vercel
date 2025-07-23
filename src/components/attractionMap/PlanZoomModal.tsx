@@ -25,46 +25,55 @@ const attractions = [
     { name: 'Tunnel Sans Retour', slug: 'tunnel-sans-retour', top: '39.5%', left: '72.4%' },
   ];
 
-export default function PlanZoomModal({ isOpen, onClose }: PlanZoomModalProps) {
-  if (!isOpen) return null;
-
-  return (
-    <div className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center">
-      <button
-        className="absolute top-4 right-4 text-white hover:text-red-500 transition"
-        type="button"
-        onClick={onClose}
+  export default function PlanZoomModal({ isOpen, onClose }: PlanZoomModalProps) {
+    if (!isOpen) return null;
+  
+    return (
+      <div
+        className="fixed inset-0 z-40 bg-black/80 flex items-center justify-center"
+        onClick={onClose} // 👈 ferme si on clique autour
       >
-        <X size={32} />
-      </button>
-
-      <div className="w-full h-full overflow-auto p-4">
-        <div className="relative w-[1400px] max-w-none aspect-[16/9] mx-auto">
-          <Image
-            src="/images/zombieland-map-isometric.webp"
-            alt="Plan du parc Zombieland"
-            fill
-            className="object-contain"
-            priority
-          />
-
-          {attractions.map((attr) => (
-            <Link
-              key={attr.slug}
-              href={`/attractions/${attr.slug}`}
-              className="absolute z-10 text-sm font-subtitle font-semibold text-primary-light whitespace-nowrap transition hover:underline"
-              style={{
-                top: attr.top,
-                left: attr.left,
-                transform: "translate(-50%, -50%)",
-              }}
-              onClick={onClose}
-            >
-              {attr.name}
-            </Link>
-          ))}
+        {/* Conteneur intérieur, bloque propagation */}
+        <div
+          className="w-full h-full overflow-auto p-4"
+          onClick={(e) => e.stopPropagation()} // ❌ empêche la fermeture si on clique dans la map
+        >
+          {/* Bouton croix en haut */}
+          <button
+            type="button"
+            onClick={onClose}
+            className="fixed top-4 right-4 z-50 text-white hover:text-red-500 transition"
+            aria-label="Fermer la modale"
+          >
+            <X size={32} />
+          </button>
+  
+          <div className="relative w-[1400px] max-w-none aspect-[16/9] mx-auto">
+            <Image
+              src="/images/zombieland-map-isometric.webp"
+              alt="Plan du parc Zombieland"
+              fill
+              className="object-contain"
+              priority
+            />
+  
+            {attractions.map((attr) => (
+              <Link
+                key={attr.slug}
+                href={`/attractions/${attr.slug}`}
+                className="absolute z-10 text-sm font-subtitle font-semibold text-primary-light whitespace-nowrap transition hover:underline"
+                style={{
+                  top: attr.top,
+                  left: attr.left,
+                  transform: "translate(-50%, -50%)",
+                }}
+                onClick={onClose} // facultatif si tu veux que ça ferme aussi
+              >
+                {attr.name}
+              </Link>
+            ))}
+          </div>
         </div>
       </div>
-    </div>
-  );
-}
+    );
+  }
