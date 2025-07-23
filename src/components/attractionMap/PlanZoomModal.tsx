@@ -31,12 +31,8 @@ export default function PlanZoomModal({ isOpen, onClose }: PlanZoomModalProps) {
 
   useEffect(() => {
     setIsMobile(window.innerWidth <= 800);
-
-    const handleResize = () => {
-      setIsMobile(window.innerWidth <= 800);
-    };
+    const handleResize = () => setIsMobile(window.innerWidth <= 800);
     window.addEventListener("resize", handleResize);
-
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
@@ -44,47 +40,49 @@ export default function PlanZoomModal({ isOpen, onClose }: PlanZoomModalProps) {
 
   return (
     <div
-      className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center"
+      className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center"
       onClick={onClose}
     >
-      {/* Ce bloc empêche la propagation pour ne pas fermer la modale quand on clique dessus */}
+      {/* scroll auto, click stopPropagation pour empêcher fermeture */}
       <div
-        className="relative w-[1400px] max-w-full aspect-[16/9] mx-auto"
+        className="relative w-[200%] max-w-none h-[90vh] overflow-auto mx-auto"
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Bouton de fermeture dans le coin supérieur droit de l'image */}
-        <button
-          type="button"
-          onClick={onClose}
-          className="absolute top-2 right-2 z-50 text-white hover:text-red-500 transition"
-          aria-label="Fermer"
-        >
-          <X size={28} />
-        </button>
-
-        <Image
-          src="/images/zombieland-map-isometric.webp"
-          alt="Plan du parc Zombieland"
-          fill
-          className="object-contain"
-          priority
-        />
-
-        {attractions.map((attr) => (
-          <Link
-            key={attr.slug}
-            href={`/attractions/${attr.slug}`}
-            className="absolute z-10 text-[10px] sm:text-sm font-subtitle font-semibold text-primary-light whitespace-nowrap transition hover:underline"
-            style={{
-              top: attr.top,
-              left: attr.left,
-              transform: "translate(-50%, -50%)",
-            }}
+        <div className="relative w-[1400px] aspect-[16/9] mx-auto">
+          {/* bouton fermer */}
+          <button
+            type="button"
             onClick={onClose}
+            className="absolute top-2 right-2 z-50 text-white hover:text-red-500 transition"
+            aria-label="Fermer"
           >
-            {attr.name}
-          </Link>
-        ))}
+            <X size={28} />
+          </button>
+
+          <Image
+            src="/images/zombieland-map-isometric.webp"
+            alt="Plan du parc Zombieland"
+            fill
+            className="object-contain"
+            priority
+          />
+
+          {attractions.map((attr) => (
+            <Link
+              key={attr.slug}
+              href={`/attractions/${attr.slug}`}
+              className="absolute z-10 text-[10px] sm:text-sm font-subtitle font-semibold text-primary-light whitespace-nowrap transition hover:underline"
+              style={{
+                top: attr.top,
+                left: attr.left,
+                transform: "translate(-50%, -50%)",
+              }}
+              onClick={onClose}
+            >
+              {attr.name}
+            </Link>
+          ))}
+        </div>
       </div>
     </div>
   );
