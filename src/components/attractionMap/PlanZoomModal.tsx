@@ -1,8 +1,9 @@
-"use client";
+'use client';
 
-import Image from "next/image";
-import Link from "next/link";
-import { X } from "lucide-react";
+import { useEffect, useRef } from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
+import { X } from 'lucide-react';
 
 interface PlanZoomModalProps {
   isOpen: boolean;
@@ -26,30 +27,34 @@ const attractions = [
 ];
 
 export default function PlanZoomModal({ isOpen, onClose }: PlanZoomModalProps) {
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (isOpen && scrollRef.current) {
+      const container = scrollRef.current;
+      container.scrollLeft = (container.scrollWidth - container.clientWidth) / 2;
+    }
+  }, [isOpen]);
+
   if (!isOpen) return null;
 
   return (
-    <div
-      className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center overflow-auto p-4"
-      onClick={onClose}
-    >
+    <div className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4">
       <div
-        className="relative inline-block"
-        style={{
-          minWidth: 600,
-        }}
-        onClick={(e) => e.stopPropagation()}
+        ref={scrollRef}
+        className="relative overflow-auto max-h-[90vh] w-full"
       >
-        {/* Bouton de fermeture */}
-        <button
-          className="absolute top-2 right-2 z-50 text-white hover:text-red-500 transition"
-          onClick={onClose}
+        <div
+          className="relative w-[1400px] aspect-[16/9] mx-auto"
+          onClick={(e) => e.stopPropagation()}
         >
-          <X size={28} />
-        </button>
-  
-        {/* Image + liens */}
-        <div className="relative" style={{ width: 1200, height: 675 }}>
+          <button
+            className="absolute top-2 right-2 z-50 text-white hover:text-red-500 transition"
+            onClick={onClose}
+          >
+            <X size={28} />
+          </button>
+
           <Image
             src="/images/zombieland-map-isometric.webp"
             alt="Plan du parc Zombieland"
@@ -57,7 +62,7 @@ export default function PlanZoomModal({ isOpen, onClose }: PlanZoomModalProps) {
             className="object-contain"
             priority
           />
-  
+
           {attractions.map((attr) => (
             <Link
               key={attr.slug}
@@ -66,7 +71,7 @@ export default function PlanZoomModal({ isOpen, onClose }: PlanZoomModalProps) {
               style={{
                 top: attr.top,
                 left: attr.left,
-                transform: "translate(-50%, -50%)",
+                transform: 'translate(-50%, -50%)',
               }}
               onClick={onClose}
             >
