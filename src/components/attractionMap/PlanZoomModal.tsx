@@ -41,9 +41,15 @@ export default function PlanZoomModal({ isOpen, onClose }: PlanZoomModalProps) {
   return (
     <div className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4">
       <div
-        ref={scrollRef}
-        className="relative overflow-auto max-h-[90vh] w-full"
-      >
+  className="relative overflow-auto max-h-[90vh] mx-auto"
+  style={{
+    display: "inline-block",
+    minWidth: "auto",
+    maxWidth: "unset",
+  }}
+  ref={scrollRef} // si tu utilises la logique du scroll centré
+>
+
         <div
           className="relative w-[1400px] aspect-[16/9] mx-auto"
           onClick={(e) => e.stopPropagation()}
