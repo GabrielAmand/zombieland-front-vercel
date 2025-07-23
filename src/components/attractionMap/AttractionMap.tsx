@@ -5,6 +5,8 @@ import Link from 'next/link';
 import { useState } from "react";
 import PlanZoomModal from "./PlanZoomModal";
 
+const isMobile = typeof window !== 'undefined' && window.innerWidth <= 800;
+
   
 
 const attractions = [
@@ -31,8 +33,9 @@ const attractions = [
   
     return (
       <>
-        {/* Modal plein écran */}
-        <PlanZoomModal isOpen={isZoomOpen} onClose={() => setIsZoomOpen(false)} />
+        {isMobile && (
+  <PlanZoomModal isOpen={isZoomOpen} onClose={() => setIsZoomOpen(false)} />
+)}
   
         {/* Image cliquable */}
         <button
