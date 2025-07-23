@@ -37,7 +37,7 @@ export default function PlanZoomModal({ isOpen, onClose }: PlanZoomModalProps) {
       <div
   className="relative w-[90vw] max-w-[1400px] mx-auto"
   style={{
-    aspectRatio: '16 / 9',
+    aspectRatio: 'auto',
     maxHeight: '100vh',
   }}
   onClick={(e) => e.stopPropagation()}
