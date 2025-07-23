@@ -29,48 +29,51 @@ export default function PlanZoomModal({ isOpen, onClose }: PlanZoomModalProps) {
   if (!isOpen) return null;
 
   return (
-    <div
-      className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center"
-      onClick={onClose} // ✅ click hors image ferme la modale
-    >
-      <div
-        className="relative w-[1400px] max-w-[90vw] aspect-[16/9]"
-        onClick={(e) => e.stopPropagation()} // ❌ bloque propagation du clic vers le parent
+<div
+  className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center"
+  onClick={onClose}
+>
+  <div
+    className="w-full h-full overflow-auto p-4"
+    onClick={(e) => e.stopPropagation()}
+  >
+    {/* 👉 Wrapper scrollable horizontalement */}
+    <div className="relative w-[1400px] max-w-none aspect-[16/9] mx-auto sm:mx-0">
+      <button
+        type="button"
+        onClick={onClose}
+        className="absolute top-2 right-2 z-50 text-white hover:text-red-500 transition"
+        aria-label="Fermer la modale"
       >
-        {/* Bouton croix positionné RELATIVEMENT à l'image */}
-        <button
-          type="button"
+        <X size={28} />
+      </button>
+
+      {/* 👉 Image grande et centrée */}
+      <Image
+        src="/images/zombieland-map-isometric.webp"
+        alt="Plan du parc Zombieland"
+        fill
+        priority
+        className="object-contain"
+      />
+
+      {attractions.map((attr) => (
+        <Link
+          key={attr.slug}
+          href={`/attractions/${attr.slug}`}
+          className="absolute z-10 text-[10px] sm:text-sm font-subtitle font-semibold text-primary-light whitespace-nowrap transition hover:underline"
+          style={{
+            top: attr.top,
+            left: attr.left,
+            transform: "translate(-50%, -50%)",
+          }}
           onClick={onClose}
-          className="absolute top-2 right-2 z-50 text-white hover:text-red-500 transition"
-          aria-label="Fermer la modale"
         >
-          <X size={28} />
-        </button>
-
-        <Image
-          src="/images/zombieland-map-isometric.webp"
-          alt="Plan du parc Zombieland"
-          fill
-          className="object-contain rounded-lg"
-          priority
-        />
-
-        {attractions.map((attr) => (
-          <Link
-            key={attr.slug}
-            href={`/attractions/${attr.slug}`}
-            className="absolute z-10 text-sm font-subtitle font-semibold text-primary-light whitespace-nowrap transition hover:underline"
-            style={{
-              top: attr.top,
-              left: attr.left,
-              transform: "translate(-50%, -50%)",
-            }}
-            onClick={onClose}
-          >
-            {attr.name}
-          </Link>
-        ))}
-      </div>
+          {attr.name}
+        </Link>
+      ))}
     </div>
+  </div>
+</div>
   );
 }
