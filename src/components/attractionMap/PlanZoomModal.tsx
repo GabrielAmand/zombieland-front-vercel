@@ -36,9 +36,9 @@ export default function PlanZoomModal({ isOpen, onClose }: PlanZoomModalProps) {
       <div
         className="relative"
         style={{
-          width: '90vw',
-          maxWidth: '1000px',
-          aspectRatio: '16/9',
+          width: '1000px', // 🔒 taille fixe desktop
+          maxWidth: '95vw',
+          height: 'auto',
         }}
         onClick={(e) => e.stopPropagation()}
       >
@@ -51,14 +51,16 @@ export default function PlanZoomModal({ isOpen, onClose }: PlanZoomModalProps) {
         </button>
   
         {/* Conteneur image + liens */}
-        <div className="relative w-full h-full">
+        <div className="relative w-full h-auto">
           <Image
             src="/images/zombieland-map-isometric.webp"
             alt="Plan du parc Zombieland"
-            fill
-            className="object-contain"
+            width={1000}
+            height={562} // ≈ ratio 16:9
+            className="w-full h-auto object-contain"
             priority
           />
+  
           {attractions.map((attr) => (
             <Link
               key={attr.slug}
@@ -78,6 +80,5 @@ export default function PlanZoomModal({ isOpen, onClose }: PlanZoomModalProps) {
       </div>
     </div>
   );
-  
   
 }
