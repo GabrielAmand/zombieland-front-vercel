@@ -10,7 +10,21 @@ interface PlanZoomModalProps {
   onClose: () => void;
 }
 
-const attractions = [/* … même tableau qu’avant … */];
+const attractions = [
+  { name: 'Le Dédale Maudit', slug: 'le-dédale-maudit', top: '46.5%', left: '30.2%' },
+  { name: 'Speed Apocalypse', slug: 'speed-apocalypse', top: '38.9%', left: '39.3%' },
+  { name: 'Le Manoir des Ames Perdues', slug: 'le-manoir-des-âmes-perdues', top: '4.3%', left: '61.4%' },
+  { name: 'L’Enfer en Soins Intensifs', slug: 'lenfer-en-soins-intensifs', top: '35.3%', left: '58.9%' },
+  { name: 'Le Virus Express', slug: 'le-virus-express', top: '16.0%', left: '46.3%' },
+  { name: 'Vertige Mortel', slug: 'vertige-mortel', top: '5.7%', left: '32.8%' },
+  { name: 'Chasse Mortelle', slug: 'chasse-mortelle', top: '11.1%', left: '72.4%' },
+  { name: 'Prison Hors du Temps', slug: 'prison-hors-du-temps', top: '57.7%', left: '69.7%' },
+  { name: 'Clinique du Chaos', slug: 'clinique-du-chaos', top: '64.5%', left: '40.0%' },
+  { name: 'Les Ombres du Cimetière', slug: 'les-ombres-du-cimetière', top: '82.4%', left: '55.0%' },
+  { name: 'Les Bois Maudits', slug: 'les-bois-maudits', top: '28.2%', left: '71.1%' },
+  { name: 'Route Z', slug: 'route-z', top: '53.1%', left: '53.4%'},
+  { name: 'Tunnel Sans Retour', slug: 'tunnel-sans-retour', top: '39.5%', left: '72.4%' },
+];
 
 export default function PlanZoomModal({ isOpen, onClose }: PlanZoomModalProps) {
   const [isMobile, setIsMobile] = useState(false);
