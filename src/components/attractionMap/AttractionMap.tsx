@@ -12,7 +12,7 @@ type Attraction = {
 };
 
 // Dimensions réelles de l’image
-const imageSize = 1024;
+const imageSize = 1100;
 
 const imageBounds: [[number, number], [number, number]] = [
 	[0, 0],
