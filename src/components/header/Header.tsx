@@ -7,7 +7,6 @@ const links = [
 	{ href: "/attractions", label: "Attractions" },
 	{ href: "/infos-pratiques", label: "Infos pratiques" },
 	{ href: "/contact", label: "Contact" },
-	{ href: "/plan", label: "Plan" },
 ];
 
 export default function Header() {
