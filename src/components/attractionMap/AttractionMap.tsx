@@ -35,7 +35,7 @@ const attractions: Attraction[] = [
   {
     name: "Le Manoir des Ames Perdues",
     slug: "le-manoir-des-âmes-perdues",
-    position: [955.0, 695.0]
+    position: [925.0, 695.0]
   },
   {
     name: "L’Enfer en Soins Intensifs",
@@ -50,7 +50,7 @@ const attractions: Attraction[] = [
   {
     name: "Vertige Mortel",
     slug: "vertige-mortel",
-    position: [957.0, 204.0]
+    position: [925.0, 204.0]
   },
   {
     name: "Chasse Mortelle",
@@ -60,7 +60,7 @@ const attractions: Attraction[] = [
   {
     name: "Prison Hors du Temps",
     slug: "prison-hors-du-temps",
-    position: [940.0, 498.0]
+    position: [925.0, 498.0]
   },
   {
     name: "Clinique du Chaos",
